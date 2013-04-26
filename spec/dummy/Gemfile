@@ -1,0 +1,7 @@
+gem 'spree'
+
+gem 'spree-catalogillo', path: '../../'
+
+gem 'sqlite3'
+
+gem 'spree'
