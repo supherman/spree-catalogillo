@@ -19,16 +19,13 @@ describe Spree::Product do
     }
   }
 
-  before do
-    #fake_http = double(Net::HTTP, {post: stub(code: 200)})
-    #Net::HTTP.stub(:start).and_yield(fake_http)
-  end
   context "#update_catalogillo" do
     it "appends update_catalogillo callback" do
       Spree::Product._save_callbacks.select { |cb| cb.kind.eql?(:after) }.collect(&:filter).should include :index_on_catalogillo
     end
 
     it "builds the correct payload to be sent to the service" do
+      Spree::Catalogillo::Indexer.stub(:perform)
       product.send(:catalogillo_payload).should == product_params
     end
 
