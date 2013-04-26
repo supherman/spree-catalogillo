@@ -1,4 +1,3 @@
-puts "*"*100
 Spree::Product.class_eval do
   after_save :index_on_catalogillo
 
